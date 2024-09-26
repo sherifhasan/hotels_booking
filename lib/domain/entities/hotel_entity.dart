@@ -6,32 +6,39 @@ part 'hotel_entity.freezed.dart';
 @freezed
 class HotelEntity with _$HotelEntity {
   const factory HotelEntity({
-    required String id,
+    required String hotelId,
+    required String name,
     required String destination,
-    required int starRating,
     required String imageUrl,
-    required String roomType,
-    required double travelPrice,
-    required int durationNights,
-    required int adults,
-    required int children,
+    required double ratingScore,
+    required int days,
+    required int nights,
+    required String roomName,
+    required String boarding,
+    required int adultCount,
+    required int childrenCount,
     required bool flightIncluded,
+    required int totalPrice,
+    required int pricePerPerson,
   }) = _HotelEntity;
 
   // Factory method to convert a HotelDTO into a HotelEntity (for presentation)
   factory HotelEntity.fromDTO(HotelDTO dto) {
     return HotelEntity(
-      id: dto.hotelId,
+      hotelId: dto.hotelId,
+      name: dto.name,
       destination: dto.destination,
-      starRating: dto.category,
-      // Take the first image as the main image
-      imageUrl: dto.images.first.large,
-      roomType: dto.bestOffer.rooms.name,
-      travelPrice: dto.bestOffer.travelPrice,
-      durationNights: dto.bestOffer.travelDate.nights,
-      adults: dto.bestOffer.rooms.adultCount,
-      children: dto.bestOffer.rooms.childrenCount,
-      flightIncluded: dto.bestOffer.flightIncluded,
+      imageUrl: dto.images.isNotEmpty ? dto.images.first.large : '',
+      ratingScore: dto.ratingInfo?.score ?? 0.0,
+      days: dto.bestOffer?.travelDate.days ?? 0,
+      nights: dto.bestOffer?.travelDate.nights ?? 0,
+      roomName: dto.bestOffer?.rooms.overall.name ?? '',
+      boarding: dto.bestOffer?.rooms.overall.boarding ?? '',
+      adultCount: dto.bestOffer?.rooms.overall.adultCount ?? 0,
+      childrenCount: dto.bestOffer?.rooms.overall.childrenCount ?? 0,
+      flightIncluded: dto.bestOffer?.flightIncluded ?? false,
+      totalPrice: dto.bestOffer?.total ?? 0,
+      pricePerPerson: dto.bestOffer?.simplePricePerPerson ?? 0,
     );
   }
 }

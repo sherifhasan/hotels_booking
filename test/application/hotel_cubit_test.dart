@@ -30,16 +30,20 @@ void main() {
   group('HotelCubit tests', () {
     final List<HotelEntity> hotels = [
       HotelEntity(
-        id: '1',
-        destination: 'Paris',
-        starRating: 5,
-        imageUrl: 'https://example.com/paris.jpg',
-        roomType: 'Deluxe',
-        travelPrice: 1000,
-        durationNights: 5,
-        adults: 2,
-        children: 0,
+        hotelId: '1',
+        name: 'Hotel AluaVillage Blue Beach',
+        destination: 'Playa de Esquinzo, Fuerteventura, Spanien',
+        imageUrl: 'https://example.com/hotel.jpg',
+        ratingScore: 5.0,
+        days: 8,
+        nights: 7,
+        roomName: 'Doppelzimmer',
+        boarding: 'Frühstück',
+        adultCount: 2,
+        childrenCount: 2,
         flightIncluded: true,
+        totalPrice: 1280,
+        pricePerPerson: 320,
       ),
     ];
 
