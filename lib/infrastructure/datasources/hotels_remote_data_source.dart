@@ -1,46 +1,32 @@
-import 'dart:convert';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:hotels_booking/domain/failure.dart';
 import 'package:hotels_booking/infrastructure/dto_models/hotel_dto.dart';
+import 'package:hotels_booking/infrastructure/error_handlers/dio_error_handler.dart';
 
 class HotelRemoteDataSource {
   final Dio dio;
-  final String apiUrl = 'https://dkndmolrswy7b.cloudfront.net/hotels.json';
 
   HotelRemoteDataSource(this.dio);
 
-  Future<List<HotelDTO>> getHotels() async {
+  Future<Either<Failure, List<HotelDTO>>> getHotels() async {
     try {
-      final response = await dio.get(apiUrl);
+      final response =
+          await dio.get('https://dkndmolrswy7b.cloudfront.net/hotels.json');
 
       if (response.statusCode == 200) {
-        final List data = await compute(parseHotelsJson, response.data);
-        return data.map((json) => HotelDTO.fromJson(json)).toList();
+        final List data = response.data;
+        final hotels = data.map((json) => HotelDTO.fromJson(json)).toList();
+        return Right(hotels); // Return the success (Right) with hotel data
       } else {
-        throw DioException(
-          requestOptions: response.requestOptions,
-          response: response,
-          error: 'Server returned status code: ${response.statusCode}',
-          type: DioExceptionType.badResponse,
-        );
+        return Left(ServerFailure('Invalid response: ${response.statusCode}'));
       }
     } on DioException catch (e) {
-      if (e.type == DioExceptionType.connectionTimeout ||
-          e.type == DioExceptionType.receiveTimeout) {
-        throw Exception('Connection timed out, please try again.');
-      } else if (e.type == DioExceptionType.badResponse) {
-        throw Exception(
-            'Received invalid status code: ${e.response?.statusCode}');
-      } else if (e.type == DioExceptionType.connectionError) {
-        throw Exception('Please check your internet connection and try again.');
-      }
-      throw Exception('Unexpected error occurred: ${e.message}');
+      // Use DioErrorHandler to map DioException to Failure and return Left
+      return Left(DioErrorHandler.handleDioError(e));
     } catch (e) {
-      throw Exception('Failed to load hotels: $e');
+      // Return a generic failure in case of any other errors
+      return Left(DioErrorHandler.handleGenericError(e));
     }
   }
-}
-
-List parseHotelsJson(dynamic responseBody) {
-  return jsonDecode(responseBody) as List;
 }
