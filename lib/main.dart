@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotels_booking/application/hotel_cubit.dart';
+import 'package:hotels_booking/presentation/app_theme.dart';
 import 'package:hotels_booking/presentation/router/app_router.dart';
 
 import 'injection.dart';
@@ -22,12 +23,9 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'Hotels booking',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: AppTheme.appTheme,
         routerDelegate: getIt<HotelAppRouter>().delegate(),
         routeInformationParser: getIt<HotelAppRouter>().defaultRouteParser(),
       ),

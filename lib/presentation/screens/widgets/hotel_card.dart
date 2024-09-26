@@ -35,16 +35,20 @@ class HotelCard extends StatelessWidget {
                 // Hotel name
                 Text(
                   hotel.name,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge, // Use the titleLarge style from the theme
                 ),
 
                 const SizedBox(height: 8),
 
                 // Hotel destination
-                Text(hotel.destination),
+                Text(
+                  hotel.destination,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium, // Use the bodyMedium style from the theme
+                ),
 
                 const SizedBox(height: 8),
 
@@ -63,61 +67,78 @@ class HotelCard extends StatelessWidget {
                 const SizedBox(height: 8),
 
                 // Stay duration (days and nights)
-                Text('${hotel.days} Tage | ${hotel.nights} Nächte'),
+                Text(
+                  '${hotel.days} Tage | ${hotel.nights} Nächte',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium, // Use the bodyMedium style from the theme
+                ),
 
                 const SizedBox(height: 8),
 
                 // Room details and meal plan
-                Text('${hotel.roomName} | ${hotel.boarding}'),
+                Text(
+                  '${hotel.roomName} | ${hotel.boarding}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium, // Use the bodyMedium style from the theme
+                ),
 
                 const SizedBox(height: 8),
 
                 // Guest information and flight inclusion
                 Text(
-                    '${hotel.adultCount} Erw., ${hotel.childrenCount} Kinder | ${hotel.flightIncluded ? "inkl. Flug" : ""}'),
+                  '${hotel.adultCount} Erw., ${hotel.childrenCount} Kinder | ${hotel.flightIncluded ? "inkl. Flug" : ""}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium, // Use the bodyMedium style from the theme
+                ),
 
                 const SizedBox(height: 8),
 
                 // Price information
                 Text(
                   'ab ${hotel.totalPrice / 100} €',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ), // Use titleLarge with bold style
                 ),
 
                 const SizedBox(height: 4),
 
                 // Price per person
-                Text('${hotel.pricePerPerson / 100} € p.P.'),
+                Text(
+                  '${hotel.pricePerPerson / 100} € p.P.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium, // Use the bodyMedium style from the theme
+                ),
 
                 const SizedBox(height: 16),
 
                 // Call to Action Button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        // Add your action here (e.g., navigate to a details page)
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange, // Button color
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 16,
-                        ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Add your action here (e.g., navigate to a details page)
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Text(
-                        'Zu den Angeboten',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
+                      backgroundColor: Theme.of(context)
+                          .primaryColor, // Use the primary color from the theme
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    child: const Text(
+                      'Zu den Angeboten',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
