@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:hotels_booking/presentation/screens/bottom_nav_screen.dart';
 import 'package:hotels_booking/presentation/screens/favourites_screen.dart';
 import 'package:hotels_booking/presentation/screens/home_screen.dart';
