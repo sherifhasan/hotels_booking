@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:hotels_booking/presentation/screens/bottom_nav_screen.dart';
-import 'package:hotels_booking/presentation/screens/favourites_screen.dart';
-import 'package:hotels_booking/presentation/screens/home_screen.dart';
-import 'package:hotels_booking/presentation/screens/profile_screen.dart';
+import 'package:hotels_booking/presentation/screens/screens.dart';
 
 part 'app_router.gr.dart';
 
@@ -18,9 +15,10 @@ class HotelAppRouter extends RootStackRouter {
             page: BottomNavRoute.page,
             initial: true,
             children: [
-              AutoRoute(page: HomeRoute.page, path: 'home'),
+              AutoRoute(page: OverviewRoute.page, path: 'overview'),
+              AutoRoute(page: HotelsRoute.page, path: 'hotels'),
               AutoRoute(page: FavoritesRoute.page, path: 'favorites'),
-              AutoRoute(page: ProfileRoute.page, path: 'profile'),
+              AutoRoute(page: AccountRoute.page, path: 'account'),
             ]),
       ];
 }

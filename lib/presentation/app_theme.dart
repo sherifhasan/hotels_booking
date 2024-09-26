@@ -15,6 +15,12 @@ class AppTheme {
           fontWeight: FontWeight.bold,
         ),
       ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.orange,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.orange,

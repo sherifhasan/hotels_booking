@@ -6,8 +6,8 @@ import 'package:hotels_booking/application/hotel_cubit.dart';
 import 'widgets/hotel_card.dart';
 
 @RoutePage()
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HotelsScreen extends StatelessWidget {
+  const HotelsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,19 +10,21 @@ class BottomNavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        HomeRoute(),
+        OverviewRoute(),
+        HotelsRoute(),
         FavoritesRoute(),
-        ProfileRoute(),
+        AccountRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: ' Overview'),
+            BottomNavigationBarItem(icon: Icon(Icons.hotel), label: ' Hotels'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Favorites'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
           ],
         );
       },
