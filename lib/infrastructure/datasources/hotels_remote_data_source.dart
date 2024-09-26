@@ -5,6 +5,7 @@ import 'package:hotels_booking/infrastructure/dto_models/hotel_dto.dart';
 import 'package:hotels_booking/infrastructure/error_handlers/dio_error_handler.dart';
 
 class HotelRemoteDataSource {
+  final String apiUrl = 'https://dkndmolrswy7b.cloudfront.net/hotels.json';
   final Dio dio;
 
   HotelRemoteDataSource(this.dio);
@@ -12,7 +13,7 @@ class HotelRemoteDataSource {
   Future<Either<Failure, List<HotelDTO>>> getHotels() async {
     try {
       final response = await dio.get(
-        'https://dkndmolrswy7b.cloudfront.net/hotels.json',
+        apiUrl,
         options: Options(
           headers: {
             'Content-Type': 'application/json',
