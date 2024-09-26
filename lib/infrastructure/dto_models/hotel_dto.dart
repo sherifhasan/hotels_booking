@@ -7,7 +7,6 @@ part 'hotel_dto.g.dart';
 @freezed
 class ResponseDTO with _$ResponseDTO {
   const factory ResponseDTO({
-    @JsonKey(name: 'hotel-count') required int hotelCount,
     required List<HotelDTO> hotels,
   }) = _ResponseDTO;
 

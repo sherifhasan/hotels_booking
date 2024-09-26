@@ -11,21 +11,34 @@ class HotelRemoteDataSource {
 
   Future<Either<Failure, List<HotelDTO>>> getHotels() async {
     try {
-      final response =
-          await dio.get('https://dkndmolrswy7b.cloudfront.net/hotels.json');
+      final response = await dio.get(
+        'https://dkndmolrswy7b.cloudfront.net/hotels.json',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
 
       if (response.statusCode == 200) {
-        final List data = response.data;
-        final hotels = data.map((json) => HotelDTO.fromJson(json)).toList();
-        return Right(hotels); // Return the success (Right) with hotel data
+        final data = response.data;
+
+        // Check if the response matches the expected structure
+        if (data is Map<String, dynamic> && data.containsKey('hotels')) {
+          final responseDTO = ResponseDTO.fromJson(
+              data); // Parse the response using ResponseDTO
+          return Right(responseDTO.hotels); // Return the list of hotels
+        } else {
+          return Left(ServerFailure('Unexpected response structure.'));
+        }
       } else {
         return Left(ServerFailure('Invalid response: ${response.statusCode}'));
       }
     } on DioException catch (e) {
-      // Use DioErrorHandler to map DioException to Failure and return Left
+      // Handle Dio exceptions using a custom error handler
       return Left(DioErrorHandler.handleDioError(e));
     } catch (e) {
-      // Return a generic failure in case of any other errors
+      // Handle generic errors
       return Left(DioErrorHandler.handleGenericError(e));
     }
   }
