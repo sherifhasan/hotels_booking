@@ -16,7 +16,6 @@ class HotelRemoteDataSource {
         apiUrl,
         options: Options(
           headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
         ),
