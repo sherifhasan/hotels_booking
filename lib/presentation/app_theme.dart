@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData get appTheme {
     return ThemeData(
-      primaryColor: Colors.orange,
+      primaryColor: Color(0xFF0c276f),
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: const AppBarTheme(
-        color: Colors.orange,
+        color: Color(0xFF0c276f),
         centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.white),
         titleTextStyle: TextStyle(
           color: Colors.white,
           fontSize: 22,
@@ -17,9 +16,9 @@ class AppTheme {
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.orange,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.brown,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.grey,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
