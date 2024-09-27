@@ -47,6 +47,9 @@ class HotelHiveModel extends HiveObject {
   @HiveField(13)
   final int pricePerPerson;
 
+  @HiveField(14)
+  final String scoreDescription;
+
   // Default constructor for HotelHiveModel
   HotelHiveModel({
     required this.hotelId,
@@ -54,6 +57,7 @@ class HotelHiveModel extends HiveObject {
     required this.destination,
     required this.imageUrl,
     required this.ratingScore,
+    required this.scoreDescription,
     required this.days,
     required this.nights,
     required this.roomName,
@@ -74,6 +78,7 @@ extension HotelEntityMapper on HotelEntity {
       destination: destination,
       imageUrl: imageUrl,
       ratingScore: ratingScore,
+      scoreDescription: scoreDescription,
       days: days,
       nights: nights,
       roomName: roomName,
@@ -95,6 +100,7 @@ extension HotelHiveModelMapper on HotelHiveModel {
       destination: destination,
       imageUrl: imageUrl,
       ratingScore: ratingScore,
+      scoreDescription: scoreDescription,
       days: days,
       nights: nights,
       roomName: roomName,
