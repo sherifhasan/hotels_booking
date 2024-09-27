@@ -1,21 +1,20 @@
 import 'package:hive/hive.dart';
-import 'package:hotels_booking/domain/entities/hotel_entity.dart';
+import 'package:hotels_booking/infrastructure/storage/hotel_database_model.dart';
+import 'package:hotels_booking/setup.dart';
 
 class FavouriteLocalDataSource {
-  static const _favouritesBox = 'favourites';
+  static const favouritesBox = 'favourites';
+  final box = getIt<Box<HotelHiveModel>>();
 
-  Future<List<HotelEntity>> getFavourites() async {
-    var box = await Hive.openBox<HotelEntity>(_favouritesBox);
+  List<HotelHiveModel> getFavourites() {
     return box.values.toList();
   }
 
-  Future<void> addToFavourites(HotelEntity hotel) async {
-    var box = await Hive.openBox<HotelEntity>(_favouritesBox);
+  Future<void> addToFavourites(HotelHiveModel hotel) async {
     await box.put(hotel.hotelId, hotel);
   }
 
   Future<void> removeFromFavourites(String hotelId) async {
-    var box = await Hive.openBox<HotelEntity>(_favouritesBox);
     await box.delete(hotelId);
   }
 }
