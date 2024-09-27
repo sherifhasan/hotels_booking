@@ -1,7 +1,6 @@
-# Hotel Booking App <img src="https://img.shields.io/badge/made%20with-dart-blue.svg" alt="made with dart"> <img src="https://img.shields.io/badge/platform-android%20|%20iOS%20|%20web-green" alt="platform support">
+# Hotel Booking App <img src="https://img.shields.io/badge/made%20with-dart-blue.svg" alt="made with dart"> <img src="https://img.shields.io/badge/platform-android%20|%20iOS%20|%20web%20|%20macOS-green" alt="platform support">
 
-The **Hotel Booking App** is designed to help users search, browse, and favorite hotels across various locations. It follows **Model–view–viewmodel (MVVM)** and **clean architecture** principles for a modular and scalable structure, **BLoC (Business Logic Component)** pattern for state management, and **GetIt** for dependency injection. The project is structured around best practices to ensure maintainability, scalability, and ease of testing.
-
+The **Hotel Booking App** is designed to help users  browse, and favorite hotels across various locations. It follows **Model–view–viewmodel (MVVM)** and **clean architecture** principles for a modular and scalable structure, **BLoC (Business Logic Component)** pattern for state management, and **GetIt** for dependency injection. The project is structured around best practices to ensure maintainability, scalability, and ease of testing.
 
 ## Key Features
 
@@ -21,7 +20,6 @@ Each hotel card includes:
 - Manage your favorite hotels directly from the Favorites tab.
 - Persist favorite hotels using **Hive** for local storage.
 
-
 ### Error Handling
 - Displays appropriate error messages when hotel data fails to load.
 
@@ -34,7 +32,7 @@ Each hotel card includes:
 
 ### Architecture
 
-1. **MVVM ** separates domain logic from framework-specific code, leading to a modular and maintainable architecture.
+1. Model-View-ViewModel (MVVM) separates domain logic from framework-specific code, leading to a modular and maintainable architecture.
 2. Following **clean architecture** principles to ensure scalability, testability, and flexibility.
 
 ### State Management
@@ -48,7 +46,6 @@ Each hotel card includes:
 ### JSON Parsing
 
 - [Freezed](https://pub.dev/packages/freezed) is used with [JSON Serializable](https://pub.dev/packages/json_serializable) to generate immutable data classes and handle serialization/deserialization.
-
 
 ### Testing
 
@@ -71,6 +68,7 @@ This application has been tested on the following platforms:
 - **Android**
 - **iOS**
 - **Web**
+- **macOS**
 
 ---
 
