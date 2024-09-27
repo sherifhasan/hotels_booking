@@ -1,4 +1,4 @@
-# Hotel Booking App <img src="https://img.shields.io/badge/made%20with-dart-blue.svg" alt="made with dart"> <img src="https://img.shields.io/badge/platform-android%20|%20iOS%20|%20web%20|%20macOS-green" alt="platform support">
+# Hotel Booking App <img src="https://img.shields.io/badge/made%20with-dart-blue.svg" alt="made with dart"> <img src="https://img.shields.io/badge/platform-android%20|%20iOS%20|%20macOS-green" alt="platform support">
 
 The **Hotel Booking App** is designed to help users  browse, and favorite hotels across various locations. It follows **Model–view–viewmodel (MVVM)** and **clean architecture** principles for a modular and scalable structure, **BLoC (Business Logic Component)** pattern for state management, and **GetIt** for dependency injection. The project is structured around best practices to ensure maintainability, scalability, and ease of testing.
 
@@ -67,7 +67,6 @@ This application has been tested on the following platforms:
 
 - **Android**
 - **iOS**
-- **Web**
 - **macOS**
 
 ---
