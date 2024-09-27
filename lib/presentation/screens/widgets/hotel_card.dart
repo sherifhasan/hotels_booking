@@ -1,32 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotels_booking/application/favourite/favourite_cubit.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 
 class HotelCard extends StatelessWidget {
   final HotelEntity hotel;
+  final Function(String hotelId)? onFavoriteClick;
+  final Function(String hotelId)? onActionButtonClick;
 
-  const HotelCard({super.key, required this.hotel});
+  const HotelCard({
+    super.key,
+    required this.hotel,
+    this.onFavoriteClick,
+    this.onActionButtonClick,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final isFavourite =
+        context.read<FavouriteCubit>().isFavourite(hotel.hotelId);
     return Card(
       margin: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Hotel image
-          Image.network(
-            hotel.imageUrl,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: 200,
-            errorBuilder: (context, error, stackTrace) {
-              return const SizedBox(
+          Stack(
+            children: [
+              Image.network(
+                hotel.imageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
                 height: 200,
-                child: Center(child: Text('Image not available')),
-              );
-            },
+                errorBuilder: (context, error, stackTrace) {
+                  return const SizedBox(
+                    height: 200,
+                    child: Center(child: Text('Image not available')),
+                  );
+                },
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: IconButton(
+                  onPressed: () {
+                    onFavoriteClick?.call(hotel.hotelId);
+                  },
+                  icon: Icon(
+                    isFavourite ? Icons.favorite : Icons.favorite_border,
+                    size: 32,
+                    color: isFavourite ? Colors.red : Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

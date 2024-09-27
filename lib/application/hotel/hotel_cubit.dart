@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
-import 'package:hotels_booking/domain/usecases/fetch_hotels_use_case.dart';
+import 'package:hotels_booking/domain/usecases/hotel/fetch_hotels_use_case.dart';
 
 part 'hotel_cubit.freezed.dart';
 

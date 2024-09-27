@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hotels_booking/application/hotel_cubit.dart';
+import 'package:hotels_booking/application/hotel/hotel_cubit.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 import 'package:hotels_booking/domain/failure.dart';
-import 'package:hotels_booking/domain/usecases/fetch_hotels_use_case.dart';
+import 'package:hotels_booking/domain/usecases/hotel/fetch_hotels_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
 // Mock classes
