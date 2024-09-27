@@ -35,6 +35,7 @@ void main() {
         destination: 'Playa de Esquinzo, Fuerteventura, Spanien',
         imageUrl: 'https://example.com/hotel.jpg',
         ratingScore: 5.0,
+        scoreDescription: 'sehr gut',
         days: 8,
         nights: 7,
         roomName: 'Doppelzimmer',
