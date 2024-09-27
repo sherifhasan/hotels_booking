@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotels_booking/application/favourite/favourite_cubit.dart';
+import 'package:hotels_booking/presentation/screens/widgets/hotel_card.dart';
 
 @RoutePage()
 class FavoritesScreen extends StatelessWidget {
@@ -7,6 +10,23 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text('Favorites')),
+      body: BlocBuilder<FavouriteCubit, FavouriteState>(
+        builder: (context, state) {
+          return state.when(
+            loading: () => Center(child: CircularProgressIndicator()),
+            loaded: (hotels) => ListView.builder(
+              itemCount: hotels.length,
+              itemBuilder: (context, index) {
+                return HotelCard(hotel: hotels[index]);
+              },
+            ),
+            empty: () => Center(child: Text('No Favorites available')),
+            error: (message) => Center(child: Text('Error: $message')),
+          );
+        },
+      ),
+    );
   }
 }
