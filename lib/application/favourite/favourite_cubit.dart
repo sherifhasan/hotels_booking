@@ -30,13 +30,26 @@ class FavouriteCubit extends Cubit<FavouriteState> {
   }
 
   Future<void> addFavourite(HotelEntity hotel) async {
-    await addToFavourites(hotel);
-    loadFavourites();
+    state.maybeWhen(
+      loaded: (favourites) {
+        // Optimistically update the UI by adding the hotel to the state
+        emit(FavouriteState.loaded([...favourites, hotel]));
+      },
+      orElse: () {},
+    );
+    await addToFavourites(hotel); // Save to repository
   }
 
   Future<void> removeFavourite(String hotelId) async {
-    await removeFromFavourites(hotelId);
-    loadFavourites();
+    state.maybeWhen(
+      loaded: (favourites) {
+        // Optimistically update the UI by removing the hotel from the state
+        emit(FavouriteState.loaded(
+            favourites.where((hotel) => hotel.hotelId != hotelId).toList()));
+      },
+      orElse: () {},
+    );
+    await removeFromFavourites(hotelId); // Remove from repository
   }
 
   bool isFavourite(String hotelId) {
