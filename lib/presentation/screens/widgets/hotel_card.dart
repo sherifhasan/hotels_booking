@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hotels_booking/application/favourite/favourite_cubit.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 
@@ -27,27 +28,32 @@ class HotelCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.network(
-                hotel.imageUrl,
+              CachedNetworkImage(
+                imageUrl: hotel.imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 200,
-                errorBuilder: (context, error, stackTrace) {
-                  return const SizedBox(
-                    height: 200,
-                    child: Center(child: Text('Image not available')),
-                  );
-                },
+                placeholder: (context, url) => const SizedBox(
+                  height: 200,
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+                errorWidget: (context, url, error) => const SizedBox(
+                  height: 200,
+                  child: Center(child: Text('Image not available')),
+                ),
               ),
               Positioned(
                 top: 0,
                 right: 0,
-                child: BlocBuilder<FavouriteCubit, FavouriteState>(
-                  builder: (context, state) {
-                    final isFavourite = context
-                        .read<FavouriteCubit>()
-                        .isFavourite(hotel.hotelId);
-
+                child: BlocSelector<FavouriteCubit, FavouriteState, bool>(
+                  selector: (state) {
+                    return state.maybeWhen(
+                      loaded: (favourites) =>
+                          favourites.any((fav) => fav.hotelId == hotel.hotelId),
+                      orElse: () => false,
+                    );
+                  },
+                  builder: (context, isFavourite) {
                     return IconButton(
                       onPressed: () {
                         onFavoriteClick?.call(hotel.hotelId);
