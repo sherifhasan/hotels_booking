@@ -2,7 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   plugins:
-    - dart_code_metrics
+
   errors:
     todo: warning
     avoid_print: ignore
@@ -16,6 +16,7 @@ analyzer:
     - "**/*.gen.dart"
     - "**/__brick__/**"
     - "build/**"
+
 linter:
   rules:
     - no-boolean-literal-compare
