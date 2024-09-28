@@ -1,25 +1,14 @@
 # Hotel Booking App <img src="https://img.shields.io/badge/made%20with-dart-blue.svg" alt="made with dart"> <img src="https://img.shields.io/badge/platform-android%20|%20iOS%20|%20macOS-green" alt="platform support">
 
-The **Hotel Booking App** is designed to help users browse, and favorite hotels across various
-locations. It follows **Model–view–viewmodel (MVVM)** and **clean architecture** principles for a
-modular and scalable structure, **BLoC (Business Logic Component)** pattern for state management,
-and **GetIt** for dependency injection. The project is structured around best practices to ensure
-maintainability, scalability, and ease of testing.
-
-## Hotel App demo
-
-![AppDemo](demo/demo.gif)
+The **Hotel Booking App** is designed to help users browse and favorite hotels across various locations. It follows **Model–view–viewmodel (MVVM)** and **clean architecture** principles for a modular and scalable structure, **BLoC (Business Logic Component)** pattern for state management, and **GetIt** for dependency injection. The project is structured around best practices to ensure maintainability, scalability, and ease of testing.
 
 ## Key Features
 
 ### Hotel Listing
-
-- Displays a comprehensive list of hotels with details like name, price, and room features.
+- Displays a comprehensive list of hotels with details such as name, price, and room features.
 
 ### Hotel Card
-
 Each hotel card includes:
-
 - Hotel name
 - Hotel image
 - Hotel price (total and per person)
@@ -27,17 +16,14 @@ Each hotel card includes:
 - Rating score and number of reviews
 
 ### Favorites
-
 - Add hotels to a favorites list by tapping the heart icon.
 - Manage your favorite hotels directly from the Favorites tab.
 - Persist favorite hotels using **Hive** for local storage.
 
 ### Error Handling
-
 - Displays appropriate error messages when hotel data fails to load.
 
 ### Empty State
-
 - Shows an empty state when no hotels match the search criteria.
 
 ---
@@ -46,32 +32,28 @@ Each hotel card includes:
 
 ### Architecture
 
-1. Model-View-ViewModel (MVVM) separates domain logic from framework-specific code, leading to a
-   modular and maintainable architecture.
-2. Following **clean architecture** principles to ensure scalability, testability, and flexibility.
+1. Model-View-ViewModel (MVVM) separates business logic from framework-specific code, leading to a modular and maintainable architecture.
+2. **Clean architecture** principles ensure scalability, testability, and flexibility.
 
 ### State Management
 
-- Using [flutter_bloc](https://pub.dev/packages/flutter_bloc) for state management to achieve
-  separation of concerns, reactive updates, and a clean codebase.
+- Using [flutter_bloc](https://pub.dev/packages/flutter_bloc) for state management to achieve separation of concerns, reactive updates, and a clean codebase.
 
 ### Dependency Injection
 
-- **[GetIt](https://pub.dev/packages/get_it)** is used for dependency injection, simplifying the
-  management of dependencies and improving testability and modularity.
+- **[GetIt](https://pub.dev/packages/get_it)** is used for dependency injection, simplifying the management of dependencies and improving testability and modularity.
 
 ### JSON Parsing
 
-- [Freezed](https://pub.dev/packages/freezed) is used
-  with [JSON Serializable](https://pub.dev/packages/json_serializable) to generate immutable data
-  classes and handle serialization/deserialization.
+- **[Freezed](https://pub.dev/packages/freezed)** is used with **[JSON Serializable](https://pub.dev/packages/json_serializable)** to generate immutable data classes and handle serialization/deserialization.
 
 ### Testing
 
-- **[Mocktail](https://pub.dev/packages/mocktail)**: Provides an expressive API for creating and
-  verifying mock objects in unit tests.
-- **[bloc_test](https://pub.dev/packages/bloc_test)**: Simplifies testing BLoC/Cubit logic by
-  providing tools to simulate actions and verify state transitions.
+- **[Mocktail](https://pub.dev/packages/mocktail)**: Provides an expressive API for creating and verifying mock objects in unit tests.
+- **[bloc_test](https://pub.dev/packages/bloc_test)**: Simplifies testing BLoC/Cubit logic by providing tools to simulate actions and verify state transitions.
+
+### Integration Testing
+**Integration Testing**: End-to-end tests ensure the complete functionality of the app works correctly across multiple platforms. Integration tests simulate real user interactions and verify that the entire app behaves as expected, from navigating screens to managing favorites. Using **[integration_test](https://pub.dev/packages/integration_test)**, tests can be automated to ensure reliability.
 
 ### Key Packages
 
@@ -160,15 +142,14 @@ This application has been tested on the following platforms:
 
 ### Prerequisites
 
-- Flutter SDK: Make sure you have [Flutter installed](https://flutter.dev/docs/get-started/install)
-  on your machine.
+- Flutter SDK: Make sure you have [Flutter installed](https://flutter.dev/docs/get-started/install) on your machine.
 
 ### Setup
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/hotel_booking_app.git
-   cd hotel_booking_app
+   git clone https://github.com/sherifhasan/hotels_booking.git
+   cd hotels_booking
    ```
 
 2. **Install dependencies**:
