@@ -32,7 +32,7 @@ Each hotel card includes:
 
 ### Architecture
 
-1. Model-View-ViewModel (MVVM) separates domain logic from framework-specific code, leading to a modular and maintainable architecture.
+1. Model-View-ViewModel (MVVM) separates business logic from framework-specific code, leading to a modular and maintainable architecture.
 2. **Clean architecture** principles ensure scalability, testability, and flexibility.
 
 ### State Management
@@ -148,8 +148,8 @@ This application has been tested on the following platforms:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/hotel_booking_app.git
-   cd hotel_booking_app
+   git clone https://github.com/sherifhasan/hotels_booking.git
+   cd hotels_booking
    ```
 
 2. **Install dependencies**:
