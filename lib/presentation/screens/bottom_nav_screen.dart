@@ -23,7 +23,8 @@ class BottomNavScreen extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ' Overview'),
             BottomNavigationBarItem(icon: Icon(Icons.hotel), label: ' Hotels'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: 'Favorites'),
+                icon: Icon(key: Key('nav_fav'), Icons.favorite),
+                label: 'Favorites'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
           ],
         );

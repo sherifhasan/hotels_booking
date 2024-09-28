@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   auto_route: ^9.2.2
   cupertino_icons: ^1.0.8
+  cached_network_image: ^3.4.1
   freezed_annotation: ^2.4.4
   flutter_bloc: ^8.1.6
   get_it: ^8.0.0
@@ -21,7 +22,6 @@ dependencies:
   json_annotation: ^4.9.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  flutter_hooks: ^0.18.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +34,10 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   mocktail: ^1.0.4
   bloc_test: ^9.1.7
+  integration_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
 
 flutter:
   uses-material-design: true
