@@ -106,21 +106,40 @@ void main() {
     );
 
     blocTest<FavouriteCubit, FavouriteState>(
-      'emits [loaded] with hotel removed when removeFavourite is called',
+      'emits [loaded] with hotel removed when there is only one in favorites',
       build: () {
-        when(() => mockRemoveFromFavouritesUseCase(any()))
-            .thenAnswer((_) async => const Right(null));
-        return favouriteCubit
-          ..emit(FavouriteState.loaded([hotel])); // Initial state
+        when(() => mockRemoveFromFavouritesUseCase(hotel.hotelId))
+            .thenAnswer((_) async => const Right(null)); // Mock successful removal
+
+        return favouriteCubit..emit(FavouriteState.loaded([hotel])); // Set initial state with a favorite
       },
-      act: (cubit) => cubit.removeFavourite(hotel.hotelId),
+      act: (cubit) => cubit.removeFavourite(hotel.hotelId), // Call to remove the hotel
       expect: () => [
-        FavouriteState.loaded([]),
+        FavouriteState.empty(), // Expect the state to update to an empty list
       ],
       verify: (_) {
-        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).called(1);
+        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).called(1); // Verify the use case was called once
       },
     );
+    blocTest<FavouriteCubit, FavouriteState>(
+      'emits [loaded] with one hotel removed when there are multiple favorites',
+      build: () {
+        when(() => mockRemoveFromFavouritesUseCase(hotel.hotelId))
+            .thenAnswer((_) async => const Right(null)); // Mock successful removal
+
+        final hotel2 = hotel.copyWith(hotelId: '2'); // Add another hotel to the list
+
+        return favouriteCubit..emit(FavouriteState.loaded([hotel, hotel2])); // Set initial state with multiple favorites
+      },
+      act: (cubit) => cubit.removeFavourite(hotel.hotelId), // Call to remove the first hotel
+      expect: () => [
+        FavouriteState.loaded([hotel.copyWith(hotelId: '2')]), // Expect the state to contain only the remaining hotel
+      ],
+      verify: (_) {
+        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).called(1); // Verify the use case was called once
+      },
+    );
+
 
     blocTest<FavouriteCubit, FavouriteState>(
       'emits [error] when loadFavourites fails',
