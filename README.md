@@ -2,6 +2,9 @@
 
 The **Hotel Booking App** is designed to help users browse and favorite hotels across various locations. It follows **Model–view–viewmodel (MVVM)** and **clean architecture** principles for a modular and scalable structure, **BLoC (Business Logic Component)** pattern for state management, and **GetIt** for dependency injection. The project is structured around best practices to ensure maintainability, scalability, and ease of testing.
 
+## Hotel App demo
+![Hotel App Demo](demo/demo.gif)
+
 ## Key Features
 
 ### Hotel Listing
