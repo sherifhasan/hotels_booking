@@ -15,3 +15,7 @@ class NetworkFailure extends Failure {
 class UnexpectedFailure extends Failure {
   UnexpectedFailure(super.message);
 }
+
+class DatabaseFailure extends Failure {
+  DatabaseFailure(super.message);
+}

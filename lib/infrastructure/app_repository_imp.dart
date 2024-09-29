@@ -28,32 +28,30 @@ class AppRepositoryImp implements AppRepository {
   }
 
   @override
-  Either<Exception, List<HotelEntity>> getFavourites() {
-    try {
-      final favourites = favouriteLocalDataSource.getFavourites();
-      return Right(favourites.map((hotel) => hotel.toEntity()).toList());
-    } catch (e) {
-      return Left(Exception('Failed to load favourites'));
-    }
+  Either<Failure, List<HotelEntity>> getFavourites() {
+    final favourites = favouriteLocalDataSource.getFavourites();
+    return favourites.fold((failure) => Left(DatabaseFailure(failure.message)),
+        (savedHotels) {
+      return Right(savedHotels.map((hotel) => hotel.toEntity()).toList());
+    });
   }
 
   @override
-  Future<Either<Exception, void>> addToFavourites(HotelEntity hotel) async {
-    try {
-      await favouriteLocalDataSource.addToFavourites(hotel.toHiveModel());
-      return Right(null);
-    } catch (e) {
-      return Left(Exception('Failed to add to favourites'));
-    }
+  Future<Either<Failure, void>> addToFavourites(HotelEntity hotel) async {
+    final result =
+        await favouriteLocalDataSource.addToFavourites(hotel.toHiveModel());
+    return result.fold(
+      (failure) => Left(DatabaseFailure(failure.message)), // Handle failure
+      (success) => const Right(null), // Pass success as Right
+    );
   }
 
   @override
-  Future<Either<Exception, void>> removeFromFavourites(String hotelId) async {
-    try {
-      await favouriteLocalDataSource.removeFromFavourites(hotelId);
-      return Right(null);
-    } catch (e) {
-      return Left(Exception('Failed to remove from favourites'));
-    }
+  Future<Either<Failure, void>> removeFromFavourites(String hotelId) async {
+    final result = await favouriteLocalDataSource.removeFromFavourites(hotelId);
+    return result.fold(
+      (failure) => Left(DatabaseFailure(failure.message)), // Handle failure
+      (success) => const Right(null), // Pass success as Right
+    );
   }
 }

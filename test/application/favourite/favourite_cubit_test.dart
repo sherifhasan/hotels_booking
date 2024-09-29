@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hotels_booking/application/favourite/favourite_cubit.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
+import 'package:hotels_booking/domain/failure.dart';
 import 'package:hotels_booking/domain/usecases/favourite/favourite_usecases.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -108,44 +109,53 @@ void main() {
     blocTest<FavouriteCubit, FavouriteState>(
       'emits [loaded] with hotel removed when there is only one in favorites',
       build: () {
-        when(() => mockRemoveFromFavouritesUseCase(hotel.hotelId))
-            .thenAnswer((_) async => const Right(null)); // Mock successful removal
+        when(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).thenAnswer(
+            (_) async => const Right(null)); // Mock successful removal
 
-        return favouriteCubit..emit(FavouriteState.loaded([hotel])); // Set initial state with a favorite
+        return favouriteCubit
+          ..emit(FavouriteState.loaded(
+              [hotel])); // Set initial state with a favorite
       },
-      act: (cubit) => cubit.removeFavourite(hotel.hotelId), // Call to remove the hotel
+      act: (cubit) => cubit.removeFavourite(hotel.hotelId),
+      // Call to remove the hotel
       expect: () => [
         FavouriteState.empty(), // Expect the state to update to an empty list
       ],
       verify: (_) {
-        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).called(1); // Verify the use case was called once
+        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId))
+            .called(1); // Verify the use case was called once
       },
     );
     blocTest<FavouriteCubit, FavouriteState>(
       'emits [loaded] with one hotel removed when there are multiple favorites',
       build: () {
-        when(() => mockRemoveFromFavouritesUseCase(hotel.hotelId))
-            .thenAnswer((_) async => const Right(null)); // Mock successful removal
+        when(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).thenAnswer(
+            (_) async => const Right(null)); // Mock successful removal
 
-        final hotel2 = hotel.copyWith(hotelId: '2'); // Add another hotel to the list
+        final hotel2 =
+            hotel.copyWith(hotelId: '2'); // Add another hotel to the list
 
-        return favouriteCubit..emit(FavouriteState.loaded([hotel, hotel2])); // Set initial state with multiple favorites
+        return favouriteCubit
+          ..emit(FavouriteState.loaded(
+              [hotel, hotel2])); // Set initial state with multiple favorites
       },
-      act: (cubit) => cubit.removeFavourite(hotel.hotelId), // Call to remove the first hotel
+      act: (cubit) => cubit.removeFavourite(hotel.hotelId),
+      // Call to remove the first hotel
       expect: () => [
-        FavouriteState.loaded([hotel.copyWith(hotelId: '2')]), // Expect the state to contain only the remaining hotel
+        FavouriteState.loaded([hotel.copyWith(hotelId: '2')]),
+        // Expect the state to contain only the remaining hotel
       ],
       verify: (_) {
-        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId)).called(1); // Verify the use case was called once
+        verify(() => mockRemoveFromFavouritesUseCase(hotel.hotelId))
+            .called(1); // Verify the use case was called once
       },
     );
-
 
     blocTest<FavouriteCubit, FavouriteState>(
       'emits [error] when loadFavourites fails',
       build: () {
         when(() => mockGetFavouritesUseCase())
-            .thenReturn(Left(Exception('Error'))); // Simulate failure
+            .thenReturn(Left(DatabaseFailure('Error'))); // Simulate failure
         return favouriteCubit;
       },
       act: (cubit) => cubit.loadFavourites(),
