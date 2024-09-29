@@ -155,13 +155,13 @@ void main() {
       'emits [error] when loadFavourites fails',
       build: () {
         when(() => mockGetFavouritesUseCase())
-            .thenReturn(Left(DatabaseFailure('Error'))); // Simulate failure
+            .thenReturn(Left(DatabaseFailure('Database error occurred.'))); // Simulate failure
         return favouriteCubit;
       },
       act: (cubit) => cubit.loadFavourites(),
       expect: () => [
         const FavouriteState.loading(),
-        const FavouriteState.error('Failed to load favourites'),
+        const FavouriteState.error('An unexpected error occurred.'),
       ],
       verify: (_) {
         verify(() => mockGetFavouritesUseCase()).called(1);
