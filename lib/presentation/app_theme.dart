@@ -30,8 +30,7 @@ class AppTheme {
         titleLarge: TextStyle(
             fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
         titleMedium: TextStyle(fontSize: 16, color: Colors.black54),
-        bodyMedium: TextStyle(
-            fontSize: 14, color: Colors.black87), // Replaces bodyText2
+        bodyMedium: TextStyle(fontSize: 14, color: Colors.black87),
       ),
       cardTheme: CardTheme(
         color: Colors.white,

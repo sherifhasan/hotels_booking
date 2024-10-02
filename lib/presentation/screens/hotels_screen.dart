@@ -17,33 +17,72 @@ class HotelsScreen extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            loaded: (hotels) => ListView.builder(
-              itemCount: hotels.length,
-              itemBuilder: (context, index) {
-                final hotel = hotels[index];
-
-                return HotelCard(
-                  hotel: hotel,
-                  onFavoriteClick: (hotelId) {
-                    final isFavourite = context
-                        .read<FavouriteCubit>()
-                        .isFavourite(hotel.hotelId);
-
-                    if (isFavourite) {
-                      // Remove from favorites
-                      context.read<FavouriteCubit>().removeFavourite(hotelId);
-                    } else {
-                      // Add to favorites
-                      context.read<FavouriteCubit>().addFavourite(hotel);
-                    }
-                  },
-                );
+            loaded: (hotels) => RefreshIndicator(
+              onRefresh: () async {
+                context.read<HotelCubit>().fetchHotels();
               },
+              child: ListView.builder(
+                itemCount: hotels.length,
+                itemBuilder: (context, index) {
+                  final hotel = hotels[index];
+
+                  return HotelCard(
+                    hotel: hotel,
+                    onFavoriteClick: (hotelId) {
+                      final isFavourite = context
+                          .read<FavouriteCubit>()
+                          .isFavourite(hotel.hotelId);
+
+                      if (isFavourite) {
+                        // Remove from favorites
+                        context.read<FavouriteCubit>().removeFavourite(hotelId);
+                      } else {
+                        // Add to favorites
+                        context.read<FavouriteCubit>().addFavourite(hotel);
+                      }
+                    },
+                  );
+                },
+              ),
             ),
             empty: () => const Center(child: Text('No hotels available')),
-            error: (message) => Center(child: Text('Error: $message')),
+            error: (message) => _ErrorView(
+              message: 'Error: $message',
+              onRetry: () => context.read<HotelCubit>().fetchHotels(),
+            ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _ErrorView extends StatelessWidget {
+  final String message;
+  final VoidCallback onRetry;
+
+  const _ErrorView({
+    required this.message,
+    required this.onRetry,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            message,
+            style: const TextStyle(fontSize: 18, color: Colors.red),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: onRetry,
+            child: const Text('Retry'),
+          ),
+        ],
       ),
     );
   }
