@@ -3,9 +3,8 @@ import 'package:hotels_booking/domain/app_repository.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 import 'package:hotels_booking/domain/failure.dart';
 import 'package:hotels_booking/infrastructure/datasources/favourite_local_data_source.dart';
-import 'package:hotels_booking/infrastructure/mappers/hotel_mapper_extension.dart';
+import 'package:hotels_booking/infrastructure/mappers/extensions.dart';
 import 'package:hotels_booking/infrastructure/storage/hotel_database_model.dart';
-
 import 'datasources/hotels_remote_data_source.dart';
 
 class AppRepositoryImp implements AppRepository {

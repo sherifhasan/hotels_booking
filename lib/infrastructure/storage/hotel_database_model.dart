@@ -92,24 +92,3 @@ extension HotelEntityMapper on HotelEntity {
   }
 }
 
-extension HotelHiveModelMapper on HotelHiveModel {
-  HotelEntity toEntity() {
-    return HotelEntity(
-      hotelId: hotelId,
-      name: name,
-      destination: destination,
-      imageUrl: imageUrl,
-      ratingScore: ratingScore,
-      scoreDescription: scoreDescription,
-      days: days,
-      nights: nights,
-      roomName: roomName,
-      boarding: boarding,
-      adultCount: adultCount,
-      childrenCount: childrenCount,
-      flightIncluded: flightIncluded,
-      totalPrice: totalPrice,
-      pricePerPerson: pricePerPerson,
-    );
-  }
-}
