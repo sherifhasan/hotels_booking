@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hotels_booking/infrastructure/dto_models/hotel_dto.dart';
 
 part 'hotel_entity.freezed.dart';
 
