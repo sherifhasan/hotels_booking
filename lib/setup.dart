@@ -24,7 +24,8 @@ void _setupInjection() {
   getIt.registerSingleton<Dio>(Dio());
 
   //register FavouriteLocalDataSource
-  getIt.registerSingleton<FavouriteLocalDataSource>(FavouriteLocalDataSource());
+  getIt.registerSingleton<FavouriteLocalDataSource>(
+      FavouriteLocalDataSource(getIt()));
 
   //register HotelRemoteDataSource
   getIt
@@ -65,5 +66,5 @@ Future<void> _setupDatabase() async {
 
   // Register HiveBox
   getIt.registerLazySingleton<Box<HotelHiveModel>>(
-          () => Hive.box<HotelHiveModel>(FavouriteLocalDataSource.favouritesBox));
+      () => Hive.box<HotelHiveModel>(FavouriteLocalDataSource.favouritesBox));
 }
