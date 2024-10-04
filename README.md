@@ -116,9 +116,9 @@ This application has been tested on the following platforms:
 │   ├── error_handlers
 │   │   └── dio_error_handler.dart
 │   ├── mappers
-│   │   ├── extensions.dart
-│   │   ├── hotel_dto_mapper_extension.dart
-│   │   └── hotel_hive_mapper_extension.dart
+│   │   ├── mappers.dart
+│   │   ├── hotel_dto_mapper.dart
+│   │   └── hotel_hive_mapper.dart
 │   └── storage
 │       ├── hotel_database_model.dart
 │       └── hotel_database_model.g.dart
