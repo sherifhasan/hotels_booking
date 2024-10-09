@@ -81,15 +81,24 @@ This application has been tested on the following platforms:
 
 ```bash
 .
-├── application
-│   ├── favourite
-│   │   ├── favourite_cubit.dart
-│   │   ├── favourite_cubit.freezed.dart
-│   │   └── favourite_state.dart
-│   └── hotel
-│       ├── hotel_cubit.dart
-│       ├── hotel_cubit.freezed.dart
-│       └── hotel_state.dart
+├── data
+│   ├── app_repository_imp.dart
+│   ├── datasources
+│   │   ├── favourite_local_data_source.dart
+│   │   └── hotels_remote_data_source.dart
+│   ├── dto_models
+│   │   ├── hotel_dto.dart
+│   │   ├── hotel_dto.freezed.dart
+│   │   └── hotel_dto.g.dart
+│   ├── error_handlers
+│   │   └── dio_error_handler.dart
+│   ├── mappers
+│   │   ├── hotel_dto_mapper.dart
+│   │   ├── hotel_hive_mapper.dart
+│   │   └── mappers.dart
+│   └── storage
+│       ├── hotel_database_model.dart
+│       └── hotel_database_model.g.dart
 ├── domain
 │   ├── app_repository.dart
 │   ├── entities
@@ -104,27 +113,18 @@ This application has been tested on the following platforms:
 │       │   └── remove_from_favourites_use_case.dart
 │       └── hotel
 │           └── fetch_hotels_use_case.dart
-├── infrastructure
-│   ├── app_repository_imp.dart
-│   ├── datasources
-│   │   ├── favourite_local_data_source.dart
-│   │   └── hotels_remote_data_source.dart
-│   ├── dto_models
-│   │   ├── hotel_dto.dart
-│   │   ├── hotel_dto.freezed.dart
-│   │   └── hotel_dto.g.dart
-│   ├── error_handlers
-│   │   └── dio_error_handler.dart
-│   ├── mappers
-│   │   ├── mappers.dart
-│   │   ├── hotel_dto_mapper.dart
-│   │   └── hotel_hive_mapper.dart
-│   └── storage
-│       ├── hotel_database_model.dart
-│       └── hotel_database_model.g.dart
 ├── main.dart
 ├── presentation
 │   ├── app_theme.dart
+│   ├── cubits
+│   │   ├── favourite
+│   │   │   ├── favourite_cubit.dart
+│   │   │   ├── favourite_cubit.freezed.dart
+│   │   │   └── favourite_state.dart
+│   │   └── hotel
+│   │       ├── hotel_cubit.dart
+│   │       ├── hotel_cubit.freezed.dart
+│   │       └── hotel_state.dart
 │   ├── router
 │   │   ├── app_router.dart
 │   │   └── app_router.gr.dart
@@ -140,7 +140,6 @@ This application has been tested on the following platforms:
 │           ├── hotel_details.dart
 │           └── rating_badge.dart
 └── setup.dart
-
 ```
 
 ---

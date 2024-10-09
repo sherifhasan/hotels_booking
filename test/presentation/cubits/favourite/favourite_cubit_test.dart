@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hotels_booking/application/favourite/favourite_cubit.dart';
+import 'package:hotels_booking/presentation/cubits/favourite/favourite_cubit.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 import 'package:hotels_booking/domain/failure.dart';
 import 'package:hotels_booking/domain/usecases/favourite/favourite_usecases.dart';
@@ -154,8 +154,8 @@ void main() {
     blocTest<FavouriteCubit, FavouriteState>(
       'emits [error] when loadFavourites fails',
       build: () {
-        when(() => mockGetFavouritesUseCase())
-            .thenReturn(Left(DatabaseFailure('Database error occurred.'))); // Simulate failure
+        when(() => mockGetFavouritesUseCase()).thenReturn(Left(
+            DatabaseFailure('Database error occurred.'))); // Simulate failure
         return favouriteCubit;
       },
       act: (cubit) => cubit.loadFavourites(),

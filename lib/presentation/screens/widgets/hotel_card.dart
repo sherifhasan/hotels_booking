@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:hotels_booking/application/favourite/favourite_cubit.dart';
+import 'package:hotels_booking/presentation/cubits/favourite/favourite_cubit.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 
 import 'hotel_details.dart';

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hotels_booking/domain/failure.dart';
-import 'package:hotels_booking/infrastructure/dto_models/hotel_dto.dart';
-import 'package:hotels_booking/infrastructure/error_handlers/dio_error_handler.dart';
+import 'package:hotels_booking/data/dto_models/hotel_dto.dart';
+import 'package:hotels_booking/data/error_handlers/dio_error_handler.dart';
 
 class HotelRemoteDataSource {
   final String apiUrl = 'https://dkndmolrswy7b.cloudfront.net/hotels.json';

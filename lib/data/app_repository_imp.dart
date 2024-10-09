@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:hotels_booking/domain/app_repository.dart';
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
 import 'package:hotels_booking/domain/failure.dart';
-import 'package:hotels_booking/infrastructure/datasources/favourite_local_data_source.dart';
-import 'package:hotels_booking/infrastructure/datasources/hotels_remote_data_source.dart';
-import 'package:hotels_booking/infrastructure/mappers/mappers.dart';
-import 'package:hotels_booking/infrastructure/storage/hotel_database_model.dart';
+import 'package:hotels_booking/data/datasources/favourite_local_data_source.dart';
+import 'package:hotels_booking/data/datasources/hotels_remote_data_source.dart';
+import 'package:hotels_booking/data/mappers/mappers.dart';
+import 'package:hotels_booking/data/storage/hotel_database_model.dart';
 
 class AppRepositoryImp implements AppRepository {
   final HotelRemoteDataSource remoteDataSource;

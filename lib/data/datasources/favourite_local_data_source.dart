@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
-import 'package:hotels_booking/infrastructure/storage/hotel_database_model.dart';
+import 'package:hotels_booking/data/storage/hotel_database_model.dart';
 import 'package:hotels_booking/domain/failure.dart';
 
 class FavouriteLocalDataSource {

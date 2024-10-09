@@ -1,5 +1,5 @@
 import 'package:hotels_booking/domain/entities/hotel_entity.dart';
-import 'package:hotels_booking/infrastructure/dto_models/hotel_dto.dart';
+import 'package:hotels_booking/data/dto_models/hotel_dto.dart';
 
 extension HotelDTOMapper on HotelDTO {
   HotelEntity toEntity() {
