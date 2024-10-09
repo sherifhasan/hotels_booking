@@ -5,7 +5,7 @@ import 'package:hotels_booking/data/dto_models/hotel_dto.dart';
 import 'package:hotels_booking/data/error_handlers/dio_error_handler.dart';
 
 class HotelRemoteDataSource {
-  final String apiUrl = 'https://dkndmolrswy7b.cloudfront.net/hotels.json';
+  final String apiUrl = '';
   final Dio dio;
 
   HotelRemoteDataSource(this.dio);
